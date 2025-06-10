@@ -14,7 +14,7 @@ const Login = () => {
     const headers = {
         "Content-Type": "application/json"
     };
-    const url = "https://projectprakticum-production.up.railway.app//api/v1/auth/login"
+    const url = "https://projectprakticum-production.up.railway.app/api/v1/auth/login"
     const api = await axios.post(url,{email:email, password:password}, { headers :headers });
     const key = api.data.api_key;
     const cookies = new Cookies();
