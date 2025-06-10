@@ -18,6 +18,7 @@ const PaymentPage = ({ source, productPrice }) => {
     }
 
     alert(`Переходим на страницу оплаты...`);
+    window.location.href = "https://projectprakticum-production.up.railway.app/api/v1/payOrder?price=" + displayPrice;
   };
 
   const displayPrice = source === 'product' && productPrice ? productPrice : totalPrice;
