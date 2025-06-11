@@ -1,12 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import logo from '../assets/images/logo.png';
+// import logo from '../assets/images/logo.png';
 
 const Header = () => {
   return (
     <header style={styles.header}>
       <Link to="/" style={styles.logoContainer}>
-        <img src={logo} alt="Логотип" style={styles.logo} />
+        // <img src={logo} alt="Логотип" style={styles.logo} />
         <span style={styles.logoText}>Магазин</span>
       </Link>
 
