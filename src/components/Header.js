@@ -6,7 +6,6 @@ const Header = () => {
   return (
     <header style={styles.header}>
       <Link to="/" style={styles.logoContainer}>
-        // <img src={logo} alt="Логотип" style={styles.logo} />
         <span style={styles.logoText}>Магазин</span>
       </Link>
 
