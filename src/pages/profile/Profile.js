@@ -1,12 +1,17 @@
 import React, { useState } from 'react';
 import Button from '../../components/Button';
 import { Link } from 'react-router-dom';
-
+import { useNavigate } from 'react-router-dom';
+import Cookies from "js-cookie";
 const Profile = () => {
-  const [name, setName] = useState('egor galiev');
-  const [email, setEmail] = useState('egor.galiev.04@mail.ru');
+  const [name, setName] = useState('Alexander Borisov');
+  const [email, setEmail] = useState('paiy1806@gmail.com');
   const [isSaving, setIsSaving] = useState(false);
-
+  const navigate = useNavigate();
+  const user_id = Cookies.get('api_key');
+  if (user_id === undefined) {
+        navigate("login");
+      }
   const handleSave = () => {
     setIsSaving(true);
     // Здесь можно добавить вызов API для сохранения данных
