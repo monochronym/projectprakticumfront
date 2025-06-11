@@ -23,7 +23,7 @@ const Cart =  ({items}) => {
         "Content-Type": "application/json"
       };
       const user_id = Cookies.get('api_key');
-      if (user_id === "Undefined") {
+      if (user_id === undefined) {
         navigate("/login");
       }
       let url = "https://projectprakticum-production.up.railway.app/api/v1/basket?user_id=" + user_id;
