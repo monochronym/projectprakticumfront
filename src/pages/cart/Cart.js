@@ -56,7 +56,17 @@ const Cart =  ({items}) => {
   const handleOrder = () => {
     navigate('/payment', {state: {totalPrice, cartItems: items}});
   };
-
+  async function onRemove(id) {
+    const headers = {
+      "Content-Type": "application/json"
+    };
+    const user_id = Cookies.get('api_key');
+    let url = "https://projectprakticum-production.up.railway.app/api/v1/basket?user_id=" + user_id;
+    const basket = await axios.get(url, {headers});
+    url = "https://projectprakticum-production.up.railway.app/api/v1/basketItem?good_id=" + id + "&basket_id=" + basket.data.id;
+    const delete_basket = await axios.delete(url, {headers});
+    window.location.reload();
+  }
   return (
       <div style={styles.container}>
         <h2 style={styles.title}>Корзина</h2>
@@ -66,6 +76,13 @@ const Cart =  ({items}) => {
             <div style={styles.grid}>
               {items.map((item) => (
                   <div key={item.id} style={styles.card}>
+                    <button                                                                 // кнопка удаления
+                        style={styles.removeButton}                                           // кнопка удаления
+                        onClick={() => onRemove(item.id)}                                     // кнопка удаления
+                        aria-label="Удалить товар"                                            // кнопка удаления
+                    >
+                      ×
+                    </button>
                     <div style={styles.imageWrapper}>
                       <img
                           src={item.image ? item.image : ''}
@@ -132,6 +149,19 @@ const styles = {
     maxWidth:'375px',
     height:'450px',
     boxSizing:'border-box'
+  },
+  removeButton: {
+    position: 'absolute',
+    top: '10px',
+    right: '10px',
+    background: 'transparent',
+    border: 'none',
+    fontSize: '24px',
+    color: '#999',
+    cursor: 'pointer',
+    zIndex: 1,
+    lineHeight: '1',
+    transition: 'color 0.2s ease',
   },
   imageWrapper:{
     width:'100%',
