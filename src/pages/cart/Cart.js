@@ -23,6 +23,9 @@ const Cart =  ({items}) => {
         "Content-Type": "application/json"
       };
       const user_id = Cookies.get('api_key');
+      if (user_id === "Undefined") {
+        navigate("/login");
+      }
       let url = "https://projectprakticum-production.up.railway.app/api/v1/basket?user_id=" + user_id;
       const basket = await axios.get(url, {headers});
       url = "https://projectprakticum-production.up.railway.app/api/v1/basketItem/?basket_id=" + basket.data.id;
